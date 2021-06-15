@@ -1,10 +1,9 @@
 from flask import Flask, request, render_template
 import os
 from .extensions import register_extensions
-from contentful_management import Client, uploads_proxy
+from contentful_management import Client
 import hashlib
 import random
-import json 
 atoken = os.environ.get("ACCESS_TOKEN")
 space = os.environ.get("SPACE_ID")
 
