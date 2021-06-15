@@ -4,7 +4,7 @@ from .extensions import register_extensions
 from contentful_management import Client, uploads_proxy
 import hashlib
 import random
-
+import json 
 atoken = os.environ.get("ACCESS_TOKEN")
 space = os.environ.get("SPACE_ID")
 
@@ -35,6 +35,8 @@ def create_app():
             uid = ''.join(uid)
             # File Counter
             x = 0 
+            # Array for File IDs
+            files_array = []
             while x < int(no_files):
                   fieldid = "file" + str(x)
                   file_name = "filename" + str(x)
@@ -66,9 +68,17 @@ def create_app():
                   )
                   
                   asset = client.assets(space, 'master').find(uid2)
-                  asset.process() 
+                  asset.process()
+                  asset.publish() 
                   x = x + 1
-
+                  files_array.append(uid2)
+            
+            ids = []
+            for asset_id in files_array:
+               y = asset_id
+               x = {"sys": {"type": "Link", "linkType": "Asset", "id": y}}
+               ids.append(x)
+          
             # Create an Entry:
             entry_id = uid  
             entry = client.entries(space, 'master').create(entry_id, {
@@ -97,7 +107,10 @@ def create_app():
                 },
                 "description": {
                    "en-US":  project_description,
-                }
+                },
+                 "files":{
+                  "en-US" : ids
+                 } 
                 } })
                   # Update the Entry:
             entry.title = project_title
