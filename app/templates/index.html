@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block content %}
+<body class="bg-gray-100">
+    <div class="max-w-screen-xl py-12  mx-auto flex flex-col md:flex-row justify-between items-center space-y-4">
+
+        <nav class="flex flex-wrap mx-auto justify-center space-x-6"> 
+          <div class="max-w-screen-xl mx-auto ">
+            <img class="h-24 mx-auto" src="https://gist.githubusercontent.com/thedivtagguy/2c01b35a5e135a3672e3dc7960c9ff1f/raw/4068bebffeb9a39eeeffcc510c7628e5500cd375/logo.svg" alt="Srishti Archive Logo">
+          </div>
+          <a href="#" class="font-bold text-black mt-6 text-3xl hover:text-gray-600 mb-2">Srishti Archive</a>
+         
+        </nav>
+       
+      </div>
+   
+    <div class="mx-auto w-2/3 pb-20 bg-gray-100">
+    
+        <div class="px-12 pt-4 pb-10">
+            <form id="form" class="container mx-auto bg-white shadow rounded" action="{{ url_for("index")}}" method="post" enctype="multipart/form-data">
+                <div class="xl:w-full border-b border-gray-300 py-5">
+                    <div class="flex justify-center items-center w-11/12 mx-auto">
+                        <p class="text-xl text-gray-800 font-bold">Project Submission Form</p>   
+                        <p class="px-10 pt-4 text-sm text-gray-800">Before submitting, please read the submission guidelines on the Guide page.
+                            <br> Submissions not fitting the guidelines will be automatically filtered out, <br>but we may contact you for clarification</p>
+         
+                    </div>
+                    
+                </div>
+                <div class="w-11/12 mx-auto">
+                    <div class="container mx-auto">
+                        <div class="my-8 mx-auto xl:w-full xl:mx-0">
+                            <div class="xl:flex lg:flex md:flex flex-wrap justify-between">
+                                <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                                    <label for="FirstName" class="pb-2 text-sm font-bold text-gray-800">Full Name  <span class="text-xs text-gray-400 font-normal block">Doe. John Doe.</span></label>
+                                    <input type="text" required name="name"  id="name" class="border border-gray-300 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 text-gray-800" placeholder="" />
+                                </div>
+                                <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                                    <label for="major" class="pb-2 text-sm font-bold text-gray-800">Major <span class="text-xs text-gray-400 font-normal block">Hmm, difficult. VERY difficult. But where to put you?</span></label>
+                                    <div class="border border-gray-300 shadow-sm rounded flex relative">
+                                        <select type="text" name="major"  id="major" class="bg-transparent appearance-none z-10 pl-3 py-3 w-full text-sm border border-transparent focus:outline-none focus:border-indigo-700 text-gray-800 rounded">
+                                                <option value="HCD">Human Centered Design</option>
+                                                <option value="CAC">Creative and Applied Computation</option>
+                                                <option value="CE">Creative Education</option>
+                                                <option value="VCSB">Visual Communication and Strategic Branding</option>
+                                                <option value="Film">Film</option>
+                                                <option value="CAP">Contemporary Art Practices</option>
+                                                <option value="BSSD">Business Systems and Service Design</option>
+                                                <option value="IADP">Industrial Art and Design Practices</option>
+                                                <option value="IAIDP">Information Arts and Information Design Practices</option>
+                                                <option value="DMA">Digital Media Arts</option>
+                                            </select>
+                                        <div class="px-4 flex items-center border-l border-gray-300 flex-col justify-center text-gray-500 absolute right-0 bottom-0 top-0 mx-auto z-0">
+                                            <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-up" width="16" height="16" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z"/>
+                                                    <polyline points="6 15 12 9 18 15"/>
+                                                </svg>
+                                            <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="16" height="16" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z"/>
+                                                    <polyline points="6 9 12 15 18 9"/>
+                                                </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                                    <label for="year" class="pb-2 text-sm font-bold text-gray-800">Year of Study <span class="text-xs text-gray-400 font-normal block">Pretty Self-Explanatory</span></label>
+                                    <div class="border border-gray-300 shadow-sm rounded flex relative">
+                                        <select type="text" name="year" required id="year" class="bg-transparent appearance-none z-10 pl-3 py-3 w-full text-sm border border-transparent focus:outline-none focus:border-indigo-700 text-gray-800 rounded">
+                                                <option value="1st Year">1st year</option>
+                                                <option value="2nd Year">2nd year</option>
+                                                <option value="3rd Year">3rd year</option>
+                                                <option value="4th year">4th year</option>
+                                            </select>
+                                        <div class="px-4 flex items-center border-l border-gray-300 flex-col justify-center text-gray-500 absolute right-0 bottom-0 top-0 mx-auto z-0">
+                                            <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-up" width="16" height="16" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z"/>
+                                                    <polyline points="6 15 12 9 18 15"/>
+                                                </svg>
+                                            <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="16" height="16" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z"/>
+                                                    <polyline points="6 9 12 15 18 9"/>
+                                                </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                                    <label for="email" class="pb-2 text-sm font-bold text-gray-800">Email <span class="text-xs text-gray-400 font-normal block">So we can contact you.</span></label>
+                                    <div class="relative">
+                                        <div class="absolute text-gray-600 flex items-center px-4 border-r h-full">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="20" height="20" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z"/>
+                                                    <rect x="3" y="5" width="18" height="14" rx="2"/>
+                                                    <polyline points="3 7 12 13 21 7"/>
+                                                </svg>
+                                        </div>
+                                        <input id="email" name="email"  class="w-full text-gray-800 focus:outline-none focus:border focus:border-indigo-700 font-normal py-3 flex items-center pl-16 text-sm border-gray-400 rounded border" placeholder="example@gmail.com" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-4 mb-8 border-b-2 border-gray-100"></div>
+
+                           <!--Project Deets-->
+
+                           <div class="xl:flex lg:flex md:flex flex-wrap justify-between">
+                            <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                                <label for="projectname" class="pb-2 text-sm font-bold text-gray-800">Project Title <span class="text-xs text-gray-400 font-normal block">What is this project called?</span></label>
+                                <input type="text" name="projectname"  id="projectname" class="border border-gray-300 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 text-gray-800" placeholder="" />
+                            </div>
+
+                            <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                                <label for="tools" class="pb-2 text-sm font-bold text-gray-800">Project Tools <span class="text-xs text-gray-400 font-normal block">What did you use to make this? Comma Separated. <br> For example: Photoshop, Illustrator, Charcoal</span></label>
+                                <input type="text" name="tools"  id="tools" class="border border-gray-300 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 text-gray-800" placeholder="" />
+                            </div>
+
+                         
+
+                            <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                                <label for="projectdescription" class="pb-2 text-sm font-bold text-gray-800">Project Description <span class="text-xs text-gray-400 font-normal block">Describe your project for complete new-comers <br>(Minimum 300 Characters)</span></label>
+                                <input type="text" class="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" id="projectdescription" placeholder="Enter your comment" name="projectdescription" rows="5" cols="40"/>
+                            </div>
+                            <div>
+                             
+                           
+                        </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-start items-start mb-6">
+                    <label for="files" class="w-full text-gray-700 text-sm font-semibold">Number of Files <span class="text-xs text-gray-400 font-normal block">How many files do you want to archive? Minimum 1, Max 6</span>
+                    </label>
+                    <input type="number" required min="1" max="6" name="filenumber"  id="files" class="border border-gray-300 pl-3 w-28 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 text-gray-800" placeholder="" />
+
+                   
+                    <a href="#" id="filldetails" class="my-4 bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm focus:outline-none"onclick="addFields()">Add Files</a>
+                        <div id="container"></div>
+                </div>
+                <div class="w-full py-4 mt-6 flex justify-end rounded-bl rounded-br">
+                    <button class="bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 mb-4 text-sm focus:outline-none" type="submit">Submit to Archives</button>
+                </div>
+            </form>
+    
+        </div>
+    </div>
+</body>
+
+<script>
+        function addFields(){
+            // Number of inputs to create
+            var number = document.getElementById("files").value;
+            // Container <div> where dynamic content will be placed
+            var container = document.getElementById("container");
+            // Clear previous contents of the container
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i=0;i<number;i++){
+                // Append a node with a random text
+                container.appendChild(document.createTextNode("File " + (i+1) + " Name:"));
+                container.style.cssText = "font-weight:600; font-size: 0.875rem; line-height: 1.25rem;"
+                // Create an <input> element, set its type and name attributes
+                var input = document.createElement("input");
+                input.type = "text";
+                input.style.cssText ="border-radius: 0.2rem;border: solid; border-width:1px;width: 90%;display: block; focus: border-color: rgba(67, 56, 202);  border-color: rgba(209, 213, 219);transition: all 0.3s;";
+                input.name = "filename" + i;
+                container.appendChild(input);
+                var input = document.createElement("input");
+                input.type = "file";
+                input.name = "file" + i;
+                container.appendChild(input);
+                // Append a line break 
+                container.appendChild(document.createElement("br"));
+                container.appendChild(document.createElement("br"));
+
+            }
+        }
+</script>
+
+<style>
+    #container input[type="text"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+
+    text {
+        color: rgba(55, 65, 81);
+    }
+</style>
+{% endblock %}
