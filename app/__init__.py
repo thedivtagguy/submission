@@ -54,7 +54,7 @@ def create_app():
                            },
                         'file': {
                            'en-US': {
-                           'fileName': file_name,
+                           'fileName': "fileupload",
                            'contentType': uploadmedia.content_type,
                            'uploadFrom': new_upload.to_link().to_json()
                            }
