@@ -67,7 +67,7 @@ def create_app():
                   asset = client.assets(space, 'master').find(asset_id)
                   asset.process()
                   time.sleep(4) # Number of seconds
-                  asset.publish() 
+                  asset.reload().publish() 
                   x = x + 1
             
             # Generate ID List
