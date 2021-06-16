@@ -112,10 +112,8 @@ def create_app():
                 },
                 "description": {
                    "en-US":  project_description,
-                },
-                 "files":{
-                  "en-US" : ids
-                 } 
+                }
+                 
                 } })
                   # Update the Entry:
             entry.title = project_title
