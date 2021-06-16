@@ -5,6 +5,3 @@ h2 {
     @apply text-3xl;
 }
 
-input[type="text"] {
-@apply border border-black pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 text-gray-800;
-}

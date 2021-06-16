@@ -1,12 +1,16 @@
 from flask import Flask, request, render_template
 import os
 from .extensions import register_extensions, assets
+from .mail import send_email
 from contentful_management import Client
 import uuid
+from slugify import slugify
 import time
 
 atoken = os.environ.get("ACCESS_TOKEN")
 space = os.environ.get("SPACE_ID")
+# This is the Entry ID
+uid = uuid.uuid4().hex[:10] 
 
 def create_app():
     app = Flask(__name__)   
@@ -24,14 +28,15 @@ def create_app():
             tools_list = tools_list.split(",")
             year_study = request.form["year"]
             project_title = request.form["projectname"]
+            course_name = request.form["course"]
             project_description = request.form["projectdescription"]
             no_files = request.form["filenumber"]
             client = Client(atoken)
 
-            # Entry ID Generation
-            uid = uuid.uuid4().hex[:20] 
-   
-               # File Counter
+            slug = slugify(project_title)
+            slug_id = uid[-4:]
+            slug = slug + "-" + slug_id
+            # File Counter
             x = 0 
 
             # Array for File IDs
@@ -101,19 +106,23 @@ def create_app():
                    "en-US":  year_study,
                 },
                 "slug": {
-                   "en-US":  project_title,
+                   "en-US":  slug,
                 },
                 "description": {
                    "en-US":  project_description,
                 },
+                "course": {
+                   "en-US":  course_name,
+                },
                  "files":{
-                  "en-US" : ids
+                  "en-US" :  ids
                  } 
                 } })
                   # Update the Entry:
             entry.title = project_title
             entry.save()
-        return render_template("index.html") # print(uploadmedia.filename)
+            send_email(email, uid, project_title)
+        return render_template("index.html", unique_id = uid) # print(uploadmedia.filename)
     
     return app
 

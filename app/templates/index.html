@@ -2,7 +2,7 @@
 
 {% block content %}
 <body class="bg-gray-100">
-    <div class="max-w-screen-xl py-12  mx-auto flex flex-col md:flex-row justify-between items-center space-y-4">
+    <div class="max-w-screen-xl py-12  mx-12 flex flex-col md:flex-row justify-between items-center space-y-4">
 
         <nav class="flex flex-wrap mx-auto justify-center space-x-6"> 
           <div class="max-w-screen-xl mx-auto ">
@@ -16,14 +16,21 @@
    
     <div class="mx-auto w-2/3 pb-20 bg-gray-100">
     
-        <div class="px-12 pt-4 pb-10">
+        <div class="px-20 pt-4 pb-10">
             <form id="form" class="container mx-auto bg-white shadow rounded" action="{{ url_for("index")}}" method="post" enctype="multipart/form-data">
                 <div class="xl:w-full border-b border-gray-300 py-5">
                     <div class="flex justify-center items-center w-11/12 mx-auto">
-                        <p class="text-xl text-gray-800 font-bold">Project Submission Form</p>   
-                        <p class="px-10 pt-4 text-sm text-gray-800">Before submitting, please read the submission guidelines on the Guide page.
-                            <br> Submissions not fitting the guidelines will be automatically filtered out, <br>but we may contact you for clarification</p>
-         
+                        <p class="text-xl text-gray-800 font-bold">Archive Entry Submission Form</p>   
+                        <p class="w-2/3 pr-16 text-xs text-gray-800">Before submitting, <span class="font-bold ">please read the submission guidelines on the Guide page</span>.
+                            Submissions not fitting the guidelines will not be included.</p>
+                            <button class="bg-indigo-700 w-30 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 mb-4 text-xs focus:outline-none" >View Example Submission</button>
+
+                    </div>
+                    
+                </div>
+                <div class="xl:w-full border-b border-gray-300 py-5">
+                    <div class="flex justify-start items-center w-11/12 mx-auto">
+                        <p class="text-base text-gray-800 font-bold">Submission ID: <span class="rounded-sm bg-indigo-700 px-2 py-1 text-sm font-semibold text-white">{{ unique_id }}</span><span class="text-xs py-1 text-gray-400 font-normal block">(Save this if you want to update your entry later)</span></p>   
                     </div>
                     
                 </div>
@@ -116,13 +123,14 @@
 
                             <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
                                 <label for="projectdescription" class="pb-2 text-sm font-bold text-gray-800">Project Description <span class="text-xs text-gray-400 font-normal block">Describe your project for complete new-comers <br>(Minimum 300 Characters)</span></label>
-                                <input type="text" class="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" id="projectdescription" placeholder="Enter your comment" name="projectdescription" rows="5" cols="40"/>
+                                <textarea type="text" class="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" id="projectdescription" placeholder="Enter your description" name="projectdescription" rows="5" cols="40"> </textarea>
                             </div>
-                            <div>
-                             
-                           
-                        </div>
-                            
+                            <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                                <label for="course" class="pb-2 text-sm font-bold text-gray-800">Name of Course/Unit<span class="text-xs text-gray-400 font-normal block">What was the name of the unit this was completed in?</span></label>
+                                <input type="text" name="course"  id="course" class="border border-gray-300 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 text-gray-800" placeholder="" />
+                            </div>
+
+                       
                         </div>
                     </div>
                 </div>
@@ -135,8 +143,8 @@
                     <a href="#" id="filldetails" class="my-4 bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm focus:outline-none"onclick="addFields()">Add Files</a>
                         <div id="container"></div>
                 </div>
-                <div class="w-full py-4 mt-6 flex justify-end rounded-bl rounded-br">
-                    <button class="bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 mb-4 text-sm focus:outline-none" type="submit">Submit to Archives</button>
+                <div id="submitbutton" class="w-full py-4 mt-6 flex justify-end rounded-bl rounded-br">
+                    <button  class="bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 mb-4 text-sm focus:outline-none" type="submit">Submit to Archives</button>
                 </div>
             </form>
     
@@ -161,7 +169,7 @@
                 // Create an <input> element, set its type and name attributes
                 var input = document.createElement("input");
                 input.type = "text";
-                input.style.cssText ="border-radius: 0.2rem;border: solid; border-width:1px;width: 90%;display: block; focus: border-color: rgba(209, 213, 219);  transition: all 0.3s;";
+                input.style.cssText ="border-radius: 0.2rem;border: solid; border-width:1px;width: 90%;display: block; border-color: rgba(209, 213, 219);  transition: all 0.3s;";
                 input.name = "filename" + i;
                 container.appendChild(input);
                 var input = document.createElement("input");
@@ -177,12 +185,7 @@
 </script>
 
 <style>
-    #container input[type="text"] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-    }
+    
 
     text {
         color: rgba(55, 65, 81);
