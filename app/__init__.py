@@ -3,7 +3,7 @@ import os
 from .extensions import register_extensions, assets
 from contentful_management import Client
 import uuid
-import random
+import time
 
 atoken = os.environ.get("ACCESS_TOKEN")
 space = os.environ.get("SPACE_ID")
@@ -54,18 +54,19 @@ def create_app():
                            },
                         'file': {
                            'en-US': {
-                           'fileName': "fileupload",
+                           'fileName': uid,
                            'contentType': uploadmedia.content_type,
                            'uploadFrom': new_upload.to_link().to_json()
                            }
                         }
                      }
-                     }
+                   }
                   )
                   
                   # Process and Publish Asset
                   asset = client.assets(space, 'master').find(asset_id)
                   asset.process()
+                  time.sleep(4) # Number of seconds
                   asset.publish() 
                   x = x + 1
             
