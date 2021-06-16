@@ -40,12 +40,13 @@ def create_app():
                   fieldid = "file" + str(x)
                   file_name = "filename" + str(x)
                   fname = request.form[file_name]
-                  uid2 = uuid.uuid4().hex[:20] 
+                  asset_id = uuid.uuid4().hex[:20] 
+                  files_array.append(asset_id)
                   uploadmedia = request.files[fieldid]
                   # Upload File
                   new_upload = client.uploads(space).create(uploadmedia.stream)  
                   # Upload to Asset             
-                  client.assets(space, 'master').create(uid2,
+                  client.assets(space, 'master').create(asset_id,
                      {
                      'fields': {
                          'title': {
@@ -63,11 +64,10 @@ def create_app():
                   )
                   
                   # Process and Publish Asset
-                  asset = client.assets(space, 'master').find(uid2)
+                  asset = client.assets(space, 'master').find(asset_id)
                   asset.process()
                   asset.publish() 
                   x = x + 1
-                  files_array.append(uid2)
             
             # Generate ID List
             ids = []
