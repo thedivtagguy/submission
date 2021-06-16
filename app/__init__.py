@@ -4,6 +4,7 @@ from .extensions import register_extensions, assets
 from contentful_management import Client
 import hashlib
 import random
+
 atoken = os.environ.get("ACCESS_TOKEN")
 space = os.environ.get("SPACE_ID")
 
