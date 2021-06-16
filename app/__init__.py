@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 import os
 from .extensions import register_extensions, assets
 from contentful_management import Client
-import hashlib
+import uuid
 import random
 
 atoken = os.environ.get("ACCESS_TOKEN")
@@ -29,13 +29,9 @@ def create_app():
             client = Client(atoken)
 
             # Entry ID Generation
-            uid = hashlib.md5(project_title.encode())
-            uid = uid.hexdigest()
-            uid = list(uid)
-            random.shuffle(uid)
-            uid = ''.join(uid)
-
-            # File Counter
+            uid = uuid.uuid4().hex[:20] 
+   
+               # File Counter
             x = 0 
 
             # Array for File IDs
@@ -44,11 +40,7 @@ def create_app():
                   fieldid = "file" + str(x)
                   file_name = "filename" + str(x)
                   fname = request.form[file_name]
-                  uid2 = hashlib.md5(fname.encode())
-                  uid2 = uid2.hexdigest()
-                  uid2 = list(uid2)
-                  random.shuffle(uid2)
-                  uid2 = ''.join(uid2)
+                  uid2 = uuid.uuid4().hex[:20] 
                   uploadmedia = request.files[fieldid]
                   # Upload File
                   new_upload = client.uploads(space).create(uploadmedia.stream)  
@@ -112,8 +104,10 @@ def create_app():
                 },
                 "description": {
                    "en-US":  project_description,
-                }
-                 
+                },
+                 "files":{
+                  "en-US" : ids
+                 } 
                 } })
                   # Update the Entry:
             entry.title = project_title
