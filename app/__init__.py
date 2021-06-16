@@ -15,6 +15,7 @@ def create_app():
     @app.route("/", methods =["GET", "POST"])
     def index():
         if request.method == "POST":
+           #  Get User Details
             authorname = request.form["name"]
             email = request.form["email"] 
             major = request.form["major"]
@@ -26,14 +27,16 @@ def create_app():
             no_files = request.form["filenumber"]
             client = Client(atoken)
 
-            # Entry ID
+            # Entry ID Generation
             uid = hashlib.md5(project_title.encode())
             uid = uid.hexdigest()
             uid = list(uid)
             random.shuffle(uid)
             uid = ''.join(uid)
+
             # File Counter
             x = 0 
+
             # Array for File IDs
             files_array = []
             while x < int(no_files):
@@ -46,9 +49,9 @@ def create_app():
                   random.shuffle(uid2)
                   uid2 = ''.join(uid2)
                   uploadmedia = request.files[fieldid]
-                  new_upload = client.uploads(space).create(uploadmedia.stream)
-                  # Hash ID
-               
+                  # Upload File
+                  new_upload = client.uploads(space).create(uploadmedia.stream)  
+                  # Upload to Asset             
                   client.assets(space, 'master').create(uid2,
                      {
                      'fields': {
@@ -66,12 +69,14 @@ def create_app():
                      }
                   )
                   
+                  # Process and Publish Asset
                   asset = client.assets(space, 'master').find(uid2)
                   asset.process()
                   asset.publish() 
                   x = x + 1
                   files_array.append(uid2)
             
+            # Generate ID List
             ids = []
             for asset_id in files_array:
                y = asset_id
