@@ -8,7 +8,7 @@ from datetime import datetime
 def send_email(x, uid, y):    
     
     
-    sender_email = "dwightbeatlesmichaelharry@gmail.com"
+    sender_email = os.environ.get("EMAIL")
     
     receiver_email = x
     
@@ -18,11 +18,9 @@ def send_email(x, uid, y):
     
     # generic email headers
     msg['Subject'] = "Submission For " + y +  " Received!" #subjectline + ' | ' + date
-    msg['From'] = 'Srishti Archive dwightbeatlesmichaelharry@gmail.com'
+    msg['From'] = 'Srishti Archive ' + sender_email
     msg['To'] = x
-    
-   
-    
+       
     # set an alternative html body
     msg.add_alternative("""\
     <html>
