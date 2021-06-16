@@ -10,6 +10,7 @@ space = os.environ.get("SPACE_ID")
 
 def create_app():
     app = Flask(__name__)   
+    assets._named_bundles = {}
     register_extensions(app)
 
     @app.route("/", methods =["GET", "POST"])
