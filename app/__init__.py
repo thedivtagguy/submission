@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 import os
-from .extensions import register_extensions
+from .extensions import register_extensions, assets
 from contentful_management import Client
 import hashlib
 import random
@@ -8,8 +8,8 @@ atoken = os.environ.get("ACCESS_TOKEN")
 space = os.environ.get("SPACE_ID")
 
 def create_app():
-    app = Flask(__name__)
-
+    app = Flask(__name__)   
+    assets._named_bundles = {}
     register_extensions(app)
 
     @app.route("/", methods =["GET", "POST"])
