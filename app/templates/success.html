@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Section 1 -->
+<title>Success!</title>
+
+<section class="flex flex-col justify-center items-center h-screen bg-gray-50">
+    <div class="max-w-screen-xl py-8 mx-auto ">
+        <img class="h-24 mx-auto" src="https://gist.githubusercontent.com/thedivtagguy/2c01b35a5e135a3672e3dc7960c9ff1f/raw/4068bebffeb9a39eeeffcc510c7628e5500cd375/logo.svg" alt="Srishti Archive Logo">
+      </div>
+    <div class="flex justify-center items-center max-w-6xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
+      <div class="flex flex-wrap justify-center items-center -mx-3">
+        <div class="order-1 w-full px-3 lg:order-0">
+          <div class="w-full lg:max-w-md">
+            <h2 class="mb-4 text-3xl font-bold text-center leading-tight tracking-tight sm:text-4xl font-heading">Anddddd that's a wrap.</h2>
+            <p class="mb-4 font-medium tracking-tight text-center text-gray-400 xl:mb-6">Thank you for your submission, it was successfully received. We've sent you an email confirmation along with your entry ID. Heres what happens now: </p>
+            <ul>
+              <li class="flex items-center py-2 space-x-4 xl:py-3">
+                <svg class="w-8 h-8 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 1h11l1 1v5.3a3.21 3.21 0 0 0-1-.3V2H9v10.88L7.88 14H3l-1-1V2l1-1zm0 12h5V2H3v11zm10.379-4.998a2.53 2.53 0 0 0-1.19.348h-.03a2.51 2.51 0 0 0-.799 3.53L9 14.23l.71.71l2.35-2.36c.325.22.7.358 1.09.4a2.47 2.47 0 0 0 1.14-.13a2.51 2.51 0 0 0 1-.63a2.46 2.46 0 0 0 .58-1a2.63 2.63 0 0 0 .07-1.15a2.53 2.53 0 0 0-1.35-1.81a2.53 2.53 0 0 0-1.211-.258zm.24 3.992a1.5 1.5 0 0 1-.979-.244a1.55 1.55 0 0 1-.56-.68a1.49 1.49 0 0 1-.08-.86a1.49 1.49 0 0 1 1.18-1.18a1.49 1.49 0 0 1 .86.08c.276.117.512.311.68.56a1.5 1.5 0 0 1-1.1 2.324z"/></svg>
+                <span class="font-medium text-gray-500">Your project will be put in triage for 2-3 days, where it will be reviewed.</span>
+              </li>
+              <li class="flex items-center py-2 space-x-4 xl:py-3">
+                <svg class="w-8 h-8 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm-1.02-4.13h-.71L4 8.6l.71-.71l1.92 1.92l4.2-4.21l.71.71l-4.56 4.56z"/></svg>
+                <span class="font-medium text-gray-500">Once it is manually reviewed, we will schedule it for publication.</span>
+              </li>
+              <li class="flex items-center py-2 space-x-4 xl:py-3">
+                <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" pres<path fill-rule="evenodd" clip-rule="evenodd" d="M14 7a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-4zm3 2h-2v6h2V9z" fill="#626262"/><path d="M6 7a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6z" fill="#626262"/><path d="M6 11a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2H6z" fill="#626262"/><path d="M5 16a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z" fill="#626262"/><path fill-rule="evenodd" clip-rule="evenodd" d="M4 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3H4zm16 2H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z" fill="#626262"/></svg>
+                <span class="font-medium text-gray-500">Passing review, you project will be published and an email will be sent to you.</span>
+              </li>
+            </ul>
+            <div class="block py-8">
+                <a href="https://srishtiarchive.com" >
+                <button class="w-full px-3 py-4 font-medium text-white bg-blue-600 rounded-lg">Browse Project Library</button>
+                </a>    
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </section>
+  
+
+{% endblock %}

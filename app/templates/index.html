@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+<title>Srishti Archive Submission</title>
+
 <body class="bg-gray-100">
+
     <div class="max-w-screen-xl py-12  mx-12 flex flex-col md:flex-row justify-between items-center space-y-4">
 
         <nav class="flex flex-wrap mx-auto justify-center space-x-6"> 
@@ -113,7 +116,35 @@
                                 <label for="projectname" class="pb-2 text-sm font-bold text-gray-800">Project Title <span class="text-xs text-gray-400 font-normal block">What is this project called?</span></label>
                                 <input type="text" name="projectname"  id="projectname" class="border border-gray-200 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 text-gray-800" placeholder="Rebranding for The Knights of Who Say Ni" />
                             </div>
-
+                            <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                                <label for="project_category" class="pb-2 text-sm font-bold text-gray-800">Project Category <span class="text-xs text-gray-400 font-normal block">What category does your project fall under?</span></label>
+                                <div class="border border-gray-300 shadow-sm rounded flex relative">
+                                    <select type="text" name="project_category" required id="project_category" class="bg-transparent appearance-none z-10 pl-3 py-3 w-full text-sm border border-transparent focus:outline-none focus:border-indigo-700 text-gray-800 rounded">
+                                            <option value="None">Select Category</option>
+                                            <option value="Digital Media">Digital Media</option>
+                                            <option value="Traditional Media">Traditional Media</option>
+                                            <option value="Mixed Media">Mixed Media</option>
+                                            <option value="Performance Art">Performance Art</option>
+                                            <option value="Programming and Code">Programming and Code</option>
+                                            <option value="Research and Writing">Research and Writing</option>
+                                            <option value="Industrial and Product">Industrial and Product</option>
+                                        </select>
+                                    <div class="px-4 flex items-center border-l border-gray-300 flex-col justify-center text-gray-500 absolute right-0 bottom-0 top-0 mx-auto z-0">
+                                        <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-up" width="16" height="16" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z"/>
+                                                <polyline points="6 15 12 9 18 15"/>
+                                            </svg>
+                                        <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="16" height="16" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z"/>
+                                                <polyline points="6 9 12 15 18 9"/>
+                                            </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
+                                <label for="projectdescription" class="pb-2 text-sm font-bold text-gray-800">Project Description <span class="text-xs text-gray-400 font-normal block">Describe your project for complete new-comers <br>(Minimum 300 Characters)</span></label>
+                                <textarea type="text" class="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" id="projectdescription" placeholder="Enter your description" name="projectdescription" rows="5" cols="40"> </textarea>
+                            </div>
                             <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
                                 <label for="tools" class="pb-2 text-sm font-bold text-gray-800">Project Tools <span class="text-xs text-gray-400 font-normal block">What did you use to make this? Comma Separated. <br> For example: Photoshop, Illustrator, Charcoal</span></label>
                                 <input type="text" name="tools"  id="tools" class="border border-gray-300 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 text-gray-800" placeholder="" />
@@ -121,12 +152,10 @@
 
                          
 
+                          
+           
                             <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
-                                <label for="projectdescription" class="pb-2 text-sm font-bold text-gray-800">Project Description <span class="text-xs text-gray-400 font-normal block">Describe your project for complete new-comers <br>(Minimum 300 Characters)</span></label>
-                                <textarea type="text" class="flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" id="projectdescription" placeholder="Enter your description" name="projectdescription" rows="5" cols="40"> </textarea>
-                            </div>
-                            <div class="xl:w-2/5 lg:w-2/5 md:w-2/5 flex flex-col mb-6">
-                                <label for="course" class="pb-2 text-sm font-bold text-gray-800">Name of Course/Unit<span class="text-xs text-gray-400 font-normal block">What was the name of the unit this was completed in?</span></label>
+                                <label for="course" class="pb-2 text-sm font-bold text-gray-800">Name of Course/Unit<span class="text-xs text-gray-400 font-normal block">What was the name of the unit this was completed in? This is NOT your major but the name of the course.</span></label>
                                 <input type="text" name="course"  id="course" class="border border-gray-300 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 text-gray-800" placeholder="" />
                             </div>
 
@@ -135,17 +164,24 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-start items-start mb-6">
-                    <label for="files" class="w-full text-gray-700 text-sm font-semibold">Number of Files <span class="text-xs text-gray-400 font-normal block">How many files do you want to archive? Minimum 1, Max 6</span>
+                    <label for="files" class="w-full text-gray-700 text-sm font-semibold">Number of Files <span class="text-xs text-gray-400 font-normal block">How many files do you want to archive? Minimum 1, Max 4</span>
                     </label>
-                    <input type="number" required min="1" max="6" name="filenumber"  id="files" class="border border-gray-300 pl-3 w-28 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 text-gray-800" placeholder="" />
+                    <input type="number" required min="1" max="4" name="filenumber"  id="files" class="border border-gray-300 pl-3 w-28 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 text-gray-800" placeholder="" />
 
                    
                     <a href="#" id="filldetails" class="my-4 bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm focus:outline-none"onclick="addFields()">Add Files</a>
                         <div id="container"></div>
                 </div>
-                <div id="submitbutton" class="w-full py-4 mt-6 flex justify-end rounded-bl rounded-br">
-                    <button  class="bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 mb-4 text-sm focus:outline-none" type="submit">Submit to Archives</button>
-                </div>
+                
+            <div class="flex flex-row">
+                <label class="inline-flex items-center mt-3">
+                    <input type="checkbox" required class="form-checkbox h-5 w-5 "><span class="ml-2 text-xs text-gray-700 font-bold">I have read and agree to the <a class="text-indigo-500 underline"  href="http://srishtimanipalinstitute.in/policies/srishti-policy-on-ethical-conduct-and-practice" target="_blank">Srishti Manipal's Policy on Ethical Conduct and Practice </a>and agree to share this work under a <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" class="text-indigo-500 underline">CC-BY-NC-SA license </a> if published.
+                    </span>
+                </label>
+                    <div id="submitbutton" class="w-full py-4 mt-6 flex justify-end rounded-bl rounded-br">
+                        <button  class="bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 mb-4 text-sm focus:outline-none" type="submit">Submit to Archives</button>
+                    </div>
+            </div>
             </form>
     
         </div>

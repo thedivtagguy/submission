@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 import os
 from .extensions import register_extensions, assets
 from .mail import send_email
@@ -9,16 +9,21 @@ import time
 
 atoken = os.environ.get("ACCESS_TOKEN")
 space = os.environ.get("SPACE_ID")
-# This is the Entry ID
-uid = uuid.uuid4().hex[:10] 
 
 def create_app():
     app = Flask(__name__)   
     assets._named_bundles = {}
     register_extensions(app)
-
+    @app.route('/success')
+    def success():
+      # replace this with a query from whatever database you're using
+      # access the result in the tempalte, for example {{ result.name }}
+      return render_template('success.html')
+      
     @app.route("/", methods =["GET", "POST"])
     def index():
+       
+        uid = uuid.uuid4().hex[:10] 
         if request.method == "POST":
            #  Get User Details
             authorname = request.form["name"]
@@ -27,17 +32,20 @@ def create_app():
             tools_list = request.form["tools"]
             tools_list = tools_list.split(",")
             year_study = request.form["year"]
+            project_cat = request.form['project_category']
             project_title = request.form["projectname"]
             course_name = request.form["course"]
             project_description = request.form["projectdescription"]
             no_files = request.form["filenumber"]
             client = Client(atoken)
+            #   This is the Entry ID
 
             slug = slugify(project_title)
             slug_id = uid[-4:]
             slug = slug + "-" + slug_id
             # File Counter
             x = 0 
+            
 
             # Array for File IDs
             files_array = []
@@ -111,6 +119,9 @@ def create_app():
                 "description": {
                    "en-US":  project_description,
                 },
+                "category": {
+                   "en-US":  project_cat,
+                },
                 "course": {
                    "en-US":  course_name,
                 },
@@ -118,10 +129,14 @@ def create_app():
                   "en-US" :  ids
                  } 
                 } })
-                  # Update the Entry:
+                  # Update the Entry:a
+            entry.reload()
             entry.title = project_title
             entry.save()
+            entry.reload()
             send_email(email, uid, project_title)
+            return redirect(url_for('success'))
+
         return render_template("index.html", unique_id = uid) # print(uploadmedia.filename)
     
     return app

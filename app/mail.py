@@ -20,7 +20,17 @@ def send_email(x, uid, y):
     msg['Subject'] = "Submission For " + y +  " Received!" #subjectline + ' | ' + date
     msg['From'] = 'Srishti Archive ' + sender_email
     msg['To'] = x
-       
+
+    notif = EmailMessage() 
+    notif['Subject'] = "New Submission Received"
+    notif['From'] = 'Srishti Archive' + sender_email
+    notif['To'] = 'amanbhargava2001@gmail.com'
+    notif.add_alternative("""
+        New Entry recieved to the Srishti Archive. Please check in triage.
+
+    """)
+
+    
     # set an alternative html body
     msg.add_alternative("""\
     <html>
@@ -72,4 +82,12 @@ def send_email(x, uid, y):
         server.sendmail(
             sender_email, receiver_email, msg.as_string()
         )
-        
+
+           
+    # Create secure connection with server and send email
+    context2 = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context2) as server:
+        server.login(sender_email, password)
+        server.sendmail(
+            sender_email, 'amanbhargava2001@gmail.com', notif.as_string()
+        )   
